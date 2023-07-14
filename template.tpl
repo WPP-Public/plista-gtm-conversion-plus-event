@@ -58,11 +58,12 @@ const log = require('logToConsole');
 const sendPixel = require('sendPixel');
 const getCookieValues = require('getCookieValues');
 const isConsentGranted = require('isConsentGranted');
+const encodeUriComponent = require('encodeUriComponent');
 
 const token = getCookieValues("plt");
 
 if (token && isConsentGranted('ad_storage')) {
-  const url = "https://secure.adnxs.com/sspx?id=" + data.conversion_id + "&sspdata=" + token;
+  const url = "https://secure.adnxs.com/sspx?id=" + encodeUriComponent(data.conversion_id) + "&sspdata=" + encodeUriComponent(token);
   
   log("adding pixel with url "+url);
 
